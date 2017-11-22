@@ -50,10 +50,6 @@ hr{
     margin-bottom: 20px;
     box-shadow: 0 0 2px black;
 }
-.short-about img:hover{
-				transform:rotate(720deg);
-				transition:1s;
-			}
 
 .sidebar-container .short-about p {
     margin-top: 0;
