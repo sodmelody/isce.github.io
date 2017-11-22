@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>sodme</title>
+  <icon>https://www.gravatar.com/avatar/7947dd0d811aceb113beacb2be73a028</icon>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://issce.cn/"/>
+  <updated>2017-11-22T18:26:23.396Z</updated>
+  <id>http://issce.cn/</id>
+  
+  <author>
+    <name>sodme</name>
+    <email>bege576@gmail.com</email>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>phpinfo.me子域名爆破存在xss</title>
+    <link href="http://issce.cn/2017/11/23/phpinfo-me%E5%AD%90%E5%9F%9F%E5%90%8D%E7%88%86%E7%A0%B4xss/"/>
+    <id>http://issce.cn/2017/11/23/phpinfo-me子域名爆破xss/</id>
+    <published>2017-11-23T02:10:20.000Z</published>
+    <updated>2017-11-22T18:26:23.396Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;偶然&quot;&gt;&lt;a href=&quot;#偶然&quot; class=&quot;headerlink&quot; title=&quot;偶然&quot;&gt;&lt;/a&gt;偶然&lt;/h2&gt;&lt;p&gt;朋友也有他这个源码，因为在GitHub上面共享了。&lt;/p&gt;
+&lt;p&gt;用来了百度的在线扫描器，扫了一下他的站，发现一枚xss&lt;/p&gt;
+&lt;p&gt;&lt;i
+      
+    
+    </summary>
+    
+    
+      <category term="xss" scheme="http://issce.cn/tags/xss/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>xss的认识</title>
+    <link href="http://issce.cn/2017/11/23/xss%E5%9F%BA%E7%A1%80/"/>
+    <id>http://issce.cn/2017/11/23/xss基础/</id>
+    <published>2017-11-23T01:24:38.000Z</published>
+    <updated>2017-11-22T17:51:25.669Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;xss跨站脚本攻击&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="xss" scheme="http://issce.cn/tags/xss/"/>
+    
+  </entry>
+  
+</feed>
