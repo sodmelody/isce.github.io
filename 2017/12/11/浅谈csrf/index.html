@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        OWASP TOP 10｜sodme&#39;s blog
+        初识CSRF｜sodme&#39;s blog
         
     </title>
 
-    <link rel="canonical" href="http://issce.cn/2017/12/11/OWASP-TOP-10/">
+    <link rel="canonical" href="http://issce.cn/2017/12/11/浅谈csrf/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -168,9 +168,9 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
                 <div class="post-heading">
-                    <h1>OWASP TOP 10</h1>
+                    <h1>初识CSRF</h1>
                     
-                    <h2 class="subheading">当你学会了自觉，你会走的更远</h2>
+                    <h2 class="subheading">不要想的太复杂，用心即可。</h2>
                     
                     <span class="meta">
                          作者 sodme
@@ -184,8 +184,8 @@
 					</span>
                     <div class="tags text-center">
                         
-                        <a class="tag" href="/tags/#文档"
-                           title="文档">文档</a>
+                        <a class="tag" href="/tags/#csrf"
+                           title="csrf">csrf</a>
                         
                     </div>
                 </div>
@@ -194,7 +194,7 @@
     </div>
     <div class="post-title-haojen">
         <span>
-            OWASP TOP 10
+            初识CSRF
         </span>
     </div>
 </header>
@@ -205,25 +205,55 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <h2 id="2017年"><a href="#2017年" class="headerlink" title="2017年"></a>2017年</h2><p>不知道哪里的得到的OWASP TOP 10，不过最近在啃~</p>
-<p>放在博客好随时阅读°</p>
-<p>下载地址：</p>
-<p><img src="/images/web/OWASP Top 10 - 2017.pdf" alt="owasp"></p>
+                <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><h4 id="CSRF概念："><a href="#CSRF概念：" class="headerlink" title="CSRF概念："></a>CSRF概念：</h4><p>CSRF（Cross-site request forgery）跨站请求伪造，也被称为“One Click Attack”或者Session Riding，通常缩写为CSRF或者XSRF，是一种对网站的恶意利用。尽管听起来像跨站脚本（XSS），但它与XSS非常不同，XSS利用站点内的信任用户，而CSRF则通过伪装来自受信任用户的请求来利用受信任的网站。与XSS攻击相比，CSRF攻击往往不大流行（因此对其进行防范的资源也相当稀少）和难以防范，所以被认为比XSS更具危险性。</p>
+<p>常见特性：</p>
+<p>依靠用户标识危害网站</p>
+<p>利用网站对用户标识的信任</p>
+<p>欺骗用户的浏览器发送HTTP请求给目标站点</p>
+<p>另外可以通过IMG标签会触发一个GET请求，可以利用它来实现CSRF攻击。</p>
+<h4 id="浏览器的同源策略："><a href="#浏览器的同源策略：" class="headerlink" title="浏览器的同源策略："></a>浏览器的同源策略：</h4><p>同源指的是三个相同：</p>
+<ul>
+<li>协议相同</li>
+<li>域名相同</li>
+<li>端口相同</li>
+</ul>
+<p>举例：<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">http://www.<span class="keyword">abc</span>.<span class="keyword">com</span>/<span class="number">1</span>.html 协议是HTTP，域名是www.<span class="keyword">abc</span>.<span class="keyword">com</span>，端口是<span class="number">80</span>，它的同源：</span><br><span class="line">http://www.<span class="keyword">abc</span>.<span class="keyword">com</span>/lz/<span class="number">2</span>.html(同源)</span><br><span class="line">http://www.<span class="number">12</span>.<span class="keyword">com</span>/<span class="number">2</span>.html(不同源，域名不同)</span><br><span class="line">http://www.<span class="keyword">abc</span>.<span class="keyword">com</span>:<span class="number">8080</span>/<span class="built_in">index</span>.html(不同源，端口不同)</span><br><span class="line">ftp://www.<span class="keyword">abc</span>.<span class="keyword">com</span>(不同源，协议不同)</span><br></pre></td></tr></table></figure></p>
+<p>同源目的：</p>
+<p>保护用户信息安全，防止恶意的网站窃取数据。</p>
+<p>例如，网站A的cookie，受到同源策略保护就不会被网站站B的恶意代码运行，因为不同源。</p>
+<h4 id="跨域请求的方法："><a href="#跨域请求的方法：" class="headerlink" title="跨域请求的方法："></a>跨域请求的方法：</h4><p>为什么要存在跨域？因为有同源策略，限制了同网站的二级域名等引用同一身份认证，避免了用户重复登陆的情况。</p>
+<p>常见的请求方法：</p>
+<p>1.jsonp</p>
+<p>JsonP依赖于服务器端实现，我们在请求服务器资源之后，服务器可以返回一段js代码交由客户端执行， 在这段代码中附上客户端请求的信息。</p>
+<p>比如客户端请求的url为 b.com/someResource?callback=someFunc, 服务器可以返回 someFunc({name: “someName”}) 交由客户端执行。</p>
+<p>2.代理</p>
+<p>比如我的前端服务器域名是 a.com, 我在js中想要访问 b.com的资源，我们可以在a.com中提供一个代理的api，比如 a.com/proxy, 这个接口的作用就是转发请求。 我们可以在payload中指定这个请求相关的信息， 比如真实资源的url，请求的方法，header和参数等。</p>
+<p>3.CORS</p>
+<p>CORS是一个W3C标准，全称是”跨域资源共享”（Cross-origin resource sharing）。它允许浏览器向跨源服务器发出AJAX请求。</p>
+<p>CORS需要浏览器和服务器同时支持。整个CORS通信过程，都是浏览器自动完成，不需要用户参与。对于开发者来说，CORS通信与同源的AJAX通信没有差别，代码完全一样。浏览器一旦发现AJAX请求跨源，就会自动添加一些附加的头信息，有时还会多出一次附加的请求，但用户不会有感觉。因此，实现CORS通信的关键是服务器。只要服务器实现了CORS接口，就可以跨源通信。</p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>同源</p>
+<p>完成CSRF攻击的条件</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>利用用户访问，受信任的站点，登陆状态，本地含有基础认证信息</span><br><span class="line"><span class="number">2.</span>伪造正常用户请求，然后登陆状态，在用户不知道的情况下成功请求</span><br></pre></td></tr></table></figure>
+<p>挖掘漏洞注意点：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>是否有token保护，token的不可猜测性</span><br><span class="line"><span class="number">2.</span>验证了refer字段，确定网站的来源，来自可信任的网站</span><br><span class="line"><span class="number">3.</span>是否存在跨域</span><br><span class="line">&lt;img src=<span class="string">"http://www.baidu.com"</span>&gt;</span><br><span class="line">&lt;img&gt;标签不存在跨域</span><br></pre></td></tr></table></figure></p>
+<p>一般触发点：<br>修改个人资料，发信息，修改密码等</p>
+<p>防御点：<br>比如说修改密码处，添加一个用户知道的信息验证，有本人发起，并非第三方伪造。</p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><h4 id="Bwapp之csrf改你密码"><a href="#Bwapp之csrf改你密码" class="headerlink" title="Bwapp之csrf改你密码"></a>Bwapp之csrf改你密码</h4><p><img src="/images/web/csrf.gif" alt=""></p>
+<p>是否有验证referer，一般在burpsuit-&gt;repeater重放测试</p>
+<p><img src="/images/web/csrf1.png" alt="0"><br><img src="/images/web/csrf2.png" alt="1"></p>
+<p>在挖掘漏洞中，注意参数中有没有token，csrf等参数，来判断是否存在csrf漏洞</p>
+<p>xss for csrf<br>已知含有csrf漏洞，当把找到另一个xss漏洞的时候，配合xss+csrf<br>xss为存储型，构造payload，当用户触发xss时并触发了csrf漏洞，造成了蠕虫的效果。</p>
+<p>参考文章：<br>浏览器同源政策及其规避方法<br><a href="http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html" target="_blank" rel="noopener">   http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html</a></p>
+<p>玩转CSRF之挖洞实例分享<br><a href="https://www.ohlinge.cn/web/web_csrf.html" target="_blank" rel="noopener">   https://www.ohlinge.cn/web/web_csrf.html</a></p>
 
                 <hr>
                 
 
                 <ul class="pager">
                     
-                    <li class="previous">
-                        <a href="/2017/12/11/浅谈csrf/" data-toggle="tooltip" data-placement="top"
-                           title="初识CSRF">&larr; Previous Post</a>
-                    </li>
-                    
                     
                     <li class="next">
-                        <a href="/2017/11/24/复现CVE-2017-11882/" data-toggle="tooltip" data-placement="top"
-                           title="复现CVE-2017-11882">Next Post &rarr;</a>
+                        <a href="/2017/12/11/OWASP-TOP-10/" data-toggle="tooltip" data-placement="top"
+                           title="OWASP TOP 10">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
@@ -239,7 +269,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#2017年"><span class="toc-text">2017年</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#概念"><span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#CSRF概念："><span class="toc-text">CSRF概念：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#浏览器的同源策略："><span class="toc-text">浏览器的同源策略：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#跨域请求的方法："><span class="toc-text">跨域请求的方法：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原理"><span class="toc-text">原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例"><span class="toc-text">实例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Bwapp之csrf改你密码"><span class="toc-text">Bwapp之csrf改你密码</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>
@@ -261,8 +291,8 @@
                     </h5>
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#文档"
-                           title="文档">文档</a>
+                        <a class="tag" href="/tags/#csrf"
+                           title="csrf">csrf</a>
                         
                     </div>
                 </section>

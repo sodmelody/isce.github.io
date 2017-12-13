@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://issce.cn/"/>
-  <updated>2017-12-11T03:03:17.461Z</updated>
+  <updated>2017-12-13T05:19:15.217Z</updated>
   <id>http://issce.cn/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>初识CSRF</title>
+    <link href="http://issce.cn/2017/12/11/%E6%B5%85%E8%B0%88csrf/"/>
+    <id>http://issce.cn/2017/12/11/浅谈csrf/</id>
+    <published>2017-12-11T03:05:22.000Z</published>
+    <updated>2017-12-13T05:19:15.217Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h3&gt;&lt;h4 id=&quot;CSRF概念：&quot;&gt;&lt;a href=&quot;#CSRF概念：&quot; class=&quot;headerlink&quot; title=&quot;CSRF概念：&quot;&gt;&lt;/
+      
+    
+    </summary>
+    
+    
+      <category term="csrf" scheme="http://issce.cn/tags/csrf/"/>
+    
+  </entry>
   
   <entry>
     <title>OWASP TOP 10</title>
