@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        sodme&#39;s blog
+        携程一处反射型xss到鸡肋存储型xss｜sodme&#39;s blog
         
     </title>
 
-    <link rel="canonical" href="http://issce.cn/archives/2017/11/">
+    <link rel="canonical" href="http://issce.cn/2017/12/11/携程一处反射型xss到鸡肋存储型xss/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -43,7 +43,7 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "false" data-istags="false
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
 " data-ishome = "false" >
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -147,205 +147,159 @@
 </script>
 
 <!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="/images/page2.jpg">
+
+
 <style>
-    .intro-header .site-heading {
-        margin: 50px;
-    }
     
     header.intro-header {
         background-image: url('/images/page2.jpg')
     }
+
     
 </style>
-
-<!-- Page Header -->
 <header class="intro-header">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading text-center">
-                    <h1>archives</h1>
-                    <span class="subheading">可以根据归档日期检索所有文件</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>携程一处反射型xss到鸡肋存储型xss</h1>
+                    
+                    <h2 class="subheading">沉下心来，认真学习</h2>
+                    
+                    <span class="meta">
+                         作者 sodme
+                        <span>
+                          日期 2017-12-11
+                         </span>
+                    </span>
+					<br/>
+					<span id="busuanzi_container_page_pv">
+					本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+					</span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#xss"
+                           title="xss">xss</a>
+                        
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="post-title-haojen">
+        <span>
+            携程一处反射型xss到鸡肋存储型xss
+        </span>
+    </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <!-- archive list -->
-            
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h3 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h3><p>手机端的参数未过滤，导致反射型xss</p>
+<p><img src="/images/web/1.png" alt="xss"></p>
+<h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><p>返回主站，发现弹了个存储型xss</p>
+<p><img src="/images/web/2.png" alt="xss"></p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>开始找了半天，没找到到底插在哪里了，结果在历史记录哪里地方</p>
+<p><img src="/images/web/5.png" alt="xss"></p>
+<p><img src="/images/web/3.png" alt="xss"></p>
+<h3 id="收工"><a href="#收工" class="headerlink" title="收工"></a>收工</h3><p>好好学习，天天向上</p>
+
+                <hr>
                 
-                
-                
+
+                <ul class="pager">
                     
                     
-                    <div class="archive archive-year" data-date="2017">
-                        <h2 class="archive-title">
-                        <span class="fa fa-archive">
-                            <a href="/archives/2017">2017</a>
-                        </span>
-                        </h2>
-                
-                
+                    <li class="next">
+                        <a href="/2017/12/11/浅谈csrf/" data-toggle="tooltip" data-placement="top"
+                           title="初识CSRF">Next Post &rarr;</a>
+                    </li>
                     
-                    
-                    <div class="archive archive-month" data-date="201712">
-                        <h3 class="archive-title">
-                            <a href="/archives/2017/12">12</a>
-                        </h3>
+                </ul>
+
                 
-                <div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2017/12/11/携程一处反射型xss到鸡肋存储型xss/">
-                        <h4 class="post-title">
-                            携程一处反射型xss到鸡肋存储型xss
-                        </h4>
-                        
-                        <h4 class="post-subtitle">
-                            沉下心来，认真学习
-                        </h4>
-                        
-                    </a>
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#起因"><span class="toc-text">起因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#过程"><span class="toc-text">过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分析"><span class="toc-text">分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#收工"><span class="toc-text">收工</span></a></li></ol>
                 </div>
-                <hr>
-                </div>
-            
-                
-                
-                
-                
-                <div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2017/12/11/浅谈csrf/">
-                        <h4 class="post-title">
-                            初识CSRF
-                        </h4>
-                        
-                        <h4 class="post-subtitle">
-                            不要想的太复杂，用心即可。
-                        </h4>
-                        
-                    </a>
-                </div>
-                <hr>
-                </div>
-            
-                
-                
-                
-                
-                <div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2017/12/11/OWASP-TOP-10/">
-                        <h4 class="post-title">
-                            OWASP TOP 10
-                        </h4>
-                        
-                        <h4 class="post-subtitle">
-                            当你学会了自觉，你会走的更远
-                        </h4>
-                        
-                    </a>
-                </div>
-                <hr>
-                </div>
-            
-                
-                
-                
-                
-                    
-                    </div><!--month-->
-                    
-                    
-                    <div class="archive archive-month" data-date="201711">
-                        <h3 class="archive-title">
-                            <a href="/archives/2017/11">11</a>
-                        </h3>
-                
-                <div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2017/11/24/复现CVE-2017-11882/">
-                        <h4 class="post-title">
-                            复现CVE-2017-11882
-                        </h4>
-                        
-                        <h4 class="post-subtitle">
-                            梦想着登上顶峰
-                        </h4>
-                        
-                    </a>
-                </div>
-                <hr>
-                </div>
-            
-                
-                
-                
-                
-                <div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2017/11/24/来必力评论系统某处邮箱轰炸/">
-                        <h4 class="post-title">
-                            来必力评论系统某处邮箱轰炸
-                        </h4>
-                        
-                        <h4 class="post-subtitle">
-                            用心发现你会获得更多
-                        </h4>
-                        
-                    </a>
-                </div>
-                <hr>
-                </div>
-            
-                
-                
-                
-                
-                <div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2017/11/23/phpinfo-me子域名爆破xss/">
-                        <h4 class="post-title">
-                            phpinfo.me子域名爆破存在xss
-                        </h4>
-                        
-                        <h4 class="post-subtitle">
-                            最难得是坚持，最温暖的是珍惜。
-                        </h4>
-                        
-                    </a>
-                </div>
-                <hr>
-                </div>
-            
-                
-                
-                
-                
-                <div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2017/11/23/xss基础/">
-                        <h4 class="post-title">
-                            xss的认识
-                        </h4>
-                        
-                        <h4 class="post-subtitle">
-                            xss
-                        </h4>
-                        
-                    </a>
-                </div>
-                <hr>
-                </div>
-            
+            </div>
         </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#xss"
+                           title="xss">xss</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="http://www.xfcter.cn">晨天</a></li>
+                        
+                        <li><a href="http://www.bestsec.net">bang</a></li>
+                        
+                        <li><a href="https://www.inksec.cn/">Szrzvdny</a></li>
+                        
+                        <li><a href="http://www.xpshell.cn/">香白菜</a></li>
+                        
+                        <li><a href="https://www.xsafe.org/">xsafe-信息安全社区</a></li>
+                        
+                        <li><a href="http://www.iaqicn.com/">简夜</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
     </div>
-</div>
+</article>
+
+
+
+
+
+
+
 <!-- Footer -->
 <!-- Footer -->
 <footer>
